@@ -11,6 +11,17 @@ services:
         value: 3000
       - key: NODE_ENV
         value: production
+    plan: free
+    healthCheckPath: /api/health
+    autoDeploy: true
+    disk:
+      name: sqlite-data
+      mountPath: /data
+      sizeGB: 1
+    scaling:
+      minInstances: 0
+      maxInstances: 1
+      targetMemoryPercent: 80
 
   - type: web
     name: rpe-training-frontend
@@ -19,4 +30,10 @@ services:
     staticPublishPath: frontend/dist
     envVars:
       - key: VITE_API_URL
-        value: https://rpe-training-backend.onrender.com 
+        value: https://rpe-training-backend.onrender.com
+    plan: free
+    autoDeploy: true
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable 
