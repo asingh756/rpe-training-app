@@ -11,7 +11,6 @@ services:
         value: 3000
       - key: NODE_ENV
         value: production
-    plan: free
     healthCheckPath: /api/health
     autoDeploy: true
 
@@ -23,7 +22,6 @@ services:
     envVars:
       - key: VITE_API_URL
         value: https://rpe-training-backend.onrender.com
-    plan: free
     autoDeploy: true
     headers:
       - path: /*
