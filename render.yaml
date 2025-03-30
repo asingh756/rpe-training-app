@@ -14,14 +14,6 @@ services:
     plan: free
     healthCheckPath: /api/health
     autoDeploy: true
-    disk:
-      name: sqlite-data
-      mountPath: /data
-      sizeGB: 1
-    scaling:
-      minInstances: 0
-      maxInstances: 1
-      targetMemoryPercent: 80
 
   - type: web
     name: rpe-training-frontend
