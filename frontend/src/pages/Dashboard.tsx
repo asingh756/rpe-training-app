@@ -13,6 +13,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import axios from 'axios';
+import config from '../config';
 
 const Dashboard: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
@@ -28,7 +29,7 @@ const Dashboard: React.FC = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        'http://localhost:3000/api/lifts',
+        `${config.apiUrl}/api/lifts`,
         {
           lift_type: liftType,
           weight: parseFloat(weight),

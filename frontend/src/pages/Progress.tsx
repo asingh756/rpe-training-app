@@ -20,6 +20,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import config from '../config';
 
 interface Lift {
   id: number;
@@ -59,11 +60,12 @@ const Progress: React.FC = () => {
         params.append('lift_type', selectedLiftType);
       }
 
-      const response = await axios.get(`/api/lifts?${params.toString()}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
+      const response = await axios.get(
+        `${config.apiUrl}/api/lifts`,
+        {
+          headers: { Authorization: `Bearer ${token}` }
         }
-      });
+      );
       
       setLifts(response.data);
 

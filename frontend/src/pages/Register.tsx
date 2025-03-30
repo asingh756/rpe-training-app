@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Box,
@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import axios from 'axios';
+import config from '../config';
 
 interface RegisterProps {
   onRegister: (token: string) => void;
@@ -32,11 +33,14 @@ export default function Register({ onRegister }: RegisterProps) {
     }
 
     try {
-      const registerResponse = await axios.post('/api/register', {
-        username,
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${config.apiUrl}/api/register`,
+        {
+          username,
+          email,
+          password,
+        }
+      );
 
       // After successful registration, login automatically
       const loginResponse = await axios.post('/api/login', {

@@ -12,6 +12,7 @@ import {
   ToggleButton,
 } from '@mui/material';
 import axios from 'axios';
+import config from '../config';
 
 const Calculator: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -57,7 +58,7 @@ const Calculator: React.FC = () => {
       }
 
       const response = await axios.post(
-        'http://localhost:3000/api/one-rep-max',
+        `${config.apiUrl}/api/one-rep-max`,
         {
           weight: formData.weight,
           reps: formData.reps,
